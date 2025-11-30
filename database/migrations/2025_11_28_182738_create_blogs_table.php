@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('author_id');
+            $table->foreignId('author_id')->nullable()->constrained('users')->onDelete('set null');
+
             $table->unsignedBigInteger('category_id');
             $table->string('title');
+            $table->string('slug')->unique();
             $table->text('description');
             $table->string('thumbnail');
             $table->timestamps();
