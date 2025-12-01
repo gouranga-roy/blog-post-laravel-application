@@ -1,18 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Route;
 
-Route::get('', function () {
+Route::get('/', function () {
     $allBlogs = Blog::with('category', 'author')->orderBy('created_at', 'desc')->get();
     return view('home', compact('allBlogs'));
 })->name('home');
 Route::get('single/{slug}', function ($slug) {
     // Get single blog details here
-    $blogSingle = Blog::with('category', 'author')->where('slug', $slug)->first();
+    $blogSingle = Blog::with('category', 'author', 'comments')->where('slug', $slug)->first();
     return view('single', compact('blogSingle'));
 })->name('blog.single');
 
@@ -46,4 +47,10 @@ Route::controller(BlogController::class)->middleware('user.logout')->group(funct
     Route::get('blogs/{slug}/edit', 'edit')->name('blog.edit');
     Route::put('blogs/{slug}', 'update')->name('blog.update');
     Route::delete('blogs/{slug}', 'destroy')->name('blog.destroy');
+});
+
+// Comment Routes
+Route::controller(CommentController::class)->group(function () {
+    Route::post('comment', 'store')->name('comment.store');
+    Route::post('comment/reply', 'commentReply')->name('comment.reply');
 });

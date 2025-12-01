@@ -19,17 +19,17 @@ class UserController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'name' => "required|string|max:255",
-            'email' => "required|string|email|max:255|unique:users",
-            'phone' => "required|string|max:20|unique:users",
+            'name'     => "required|string|max:255",
+            'email'    => "required|string|email|max:255|unique:users",
+            'phone'    => "required|string|max:20|unique:users",
             'password' => "required|string|min:8",
         ]);
 
         // Create a new user (assuming you have a User model)
         User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'phone' => $validatedData['phone'],
+            'name'     => $validatedData['name'],
+            'email'    => $validatedData['email'],
+            'phone'    => $validatedData['phone'],
             'password' => Hash::make($validatedData['password']),
         ]);
 
@@ -48,11 +48,11 @@ class UserController extends Controller
     {
         // Validate the incoming request data
         $credentials = $request->validate([
-            'email' => "required|string|email",
+            'email'    => "required|string|email",
             'password' => "required|string",
         ]);
         // Attempt to find the user
-        if(Auth::guard('admin')->attempt($credentials)) {
+        if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
 
             // Redirect to intended home page
@@ -73,7 +73,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('success', 'Logged out successfully.');
+        return redirect('/')->with('success', 'Logged out successfully.');
 
     }
 }
