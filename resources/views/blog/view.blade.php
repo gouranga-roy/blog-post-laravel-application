@@ -35,37 +35,40 @@
                         <h4 class="mb-4">All Comments</h4>
                         <div class="comment-items">
                             <ul style="margin:0;padding:0;list-style:none;">
-                                <li>
-                                    <div class="comment mb-4">
-                                        <div class="d-flex gap-3">
-                                            <figure>
-                                                <img src="https://placehold.co/60x60?text=Author" alt="">
-                                            </figure>
-                                            <div class="comment-text">
-                                                <h4>Author Name</h4>
-                                                <span class="mb-3 d-block"><strong>Date:</strong> Nov 28, 2025</span>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, doloribus sed? Earum a iusto vitae deleniti pariatur qui tempore provident?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ol style="padding-left:80px;list-style: none;">
-                                        <li>
-                                            <div class="comment mb-4">
-                                                <div class="d-flex gap-3">
-                                                    <figure>
-                                                        <img src="https://placehold.co/60x60?text=Author" alt="">
-                                                    </figure>
-                                                    <div class="comment-text">
-                                                        <h4>Author Name</h4>
-                                                        <span class="mb-3 d-block"><strong>Date:</strong> Nov 28, 2025</span>
-                                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, doloribus sed? Earum a iusto vitae deleniti pariatur qui tempore provident?</p>
-
-                                                    </div>
+                                @foreach ($blog->comments as $comment)
+                                    <li>
+                                        <div class="comment mb-4">
+                                            <div class="d-flex gap-3">
+                                                <figure>
+                                                    <img src="https://placehold.co/60x60?text=Author" alt="">
+                                                </figure>
+                                                <div class="comment-text">
+                                                    <h4>{{ $comment->user_name }}</h4>
+                                                    <span class="mb-3 d-block"><strong>Date:</strong> {{ $comment->created_at->diffForHumans() }}</span>
+                                                    <p>{{ $comment->comment }}</p>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ol>
-                                </li>
+                                        </div>
+                                        <ol style="padding-left:80px;list-style: none;">
+                                            @foreach ($comment->replies as $replie)
+                                                <li>
+                                                    <div class="comment mb-4">
+                                                        <div class="d-flex gap-3">
+                                                            <figure>
+                                                                <img src="https://placehold.co/60x60?text={{ $replie->user_name }}" alt="">
+                                                            </figure>
+                                                            <div class="comment-text">
+                                                                <h4>{{ $replie->user_name }}</h4>
+                                                                <span class="mb-3 d-block"><strong>Date:</strong> {{ $replie->created_at->diffForHumans() }}</span>
+                                                                <p>{{ $replie->comment }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ol>
+                                    </li>
+                                @endforeach
 
                             </ul>
                         </div>

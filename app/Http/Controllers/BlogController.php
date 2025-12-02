@@ -17,12 +17,12 @@ class BlogController extends Controller
     {
         // Login Check
         $loginUser = Auth::guard('admin')->user()->id;
-        $allBlogs  = Blog::with(['category', 'author'])->where('author_id', $loginUser)->get();
+        $allBlogs  = Blog::with(['category', 'author'])
+            ->where('author_id', $loginUser)
+            ->withCount('comments')
+            ->get();
 
-        // Get Comment Count for every post
-        $getComment = Comment::get();
-
-        return view('blog.index', compact('allBlogs', 'getComment'));
+        return view('blog.index', compact('allBlogs'));
     }
 
     // Show the form for creating a new blog.
@@ -68,12 +68,6 @@ class BlogController extends Controller
     public function show($slug)
     {
         $blog = Blog::with(['category', 'author'])->where('slug', $slug)->firstOrFail();
-
-        // Get Blog Id
-        $blog_id = Blog::where('slug', $slug)->get('id');
-        $blog_id = $blog_id[0]->id;
-        // Get Comment
-        // $comments = Comment::where('blog_id', $blog_id)->with('comments')->get();
 
         return view('blog.view', compact('blog'));
     }

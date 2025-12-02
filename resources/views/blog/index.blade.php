@@ -48,10 +48,7 @@
                                     <td>{{ $blog->author->name }}</td>
                                     <td>{{ $blog->created_at->diffForHumans() }}</td>
                                     <td>
-                                        @php
-
-                                        @endphp
-                                        <a href="{{ route('post.comment', $blog->slug) }}" class="btn btn-primary bgn-sm">View (<span>10</span>)</a>
+                                        <a href="{{ route('post.comment', $blog->slug) }}" class="btn btn-primary bgn-sm">View (<span>{{ $blog->comments_count }}</span>)</a>
                                     </td>
                                     <td>
                                         <a href="{{ route('blog.show', $blog->slug) }}" class="btn btn-sm btn-success">View</a>
