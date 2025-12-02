@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\UserCategory;
 use App\Http\Middleware\UserLogin;
 use App\Http\Middleware\UserLogout;
 use App\Models\User;
@@ -9,14 +10,15 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'user.login' => UserLogin::class,
-            'user.logout' => UserLogout::class,
+            'user.login'    => UserLogin::class,
+            'user.logout'   => UserLogout::class,
+            'user.category' => UserCategory::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

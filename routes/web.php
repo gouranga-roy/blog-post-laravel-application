@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
+use Termwind\Components\Raw;
 
 Route::get('/', function () {
     $allBlogs = Blog::with('category', 'author')->orderBy('created_at', 'desc')->get();
@@ -29,7 +30,7 @@ Route::controller(UserController::class)->group(function () {
 });
 
 // Category Routes
-Route::controller(CategoryController::class)->group(function () {
+Route::controller(CategoryController::class)->middleware('user.category')->group(function () {
     Route::get('categories', 'index')->name('category.index');
     Route::get('categories/create', 'create')->name('category.create');
     Route::post('categories', 'store')->name('category.store');
@@ -50,7 +51,10 @@ Route::controller(BlogController::class)->middleware('user.logout')->group(funct
 });
 
 // Comment Routes
-Route::controller(CommentController::class)->group(function () {
+Route::controller(CommentController::class)->middleware('user.logout')->group(function () {
     Route::post('comment', 'store')->name('comment.store');
     Route::post('comment/reply', 'commentReply')->name('comment.reply');
+
+    Route::get('post/{slug}/comments', 'postComment')->name('post.comment');
+    Route::post('commnet/{id}/status', 'commentStatus')->name('comment.status');
 });

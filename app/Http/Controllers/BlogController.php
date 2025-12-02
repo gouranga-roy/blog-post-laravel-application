@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -16,9 +17,12 @@ class BlogController extends Controller
     {
         // Login Check
         $loginUser = Auth::guard('admin')->user()->id;
+        $allBlogs  = Blog::with(['category', 'author'])->where('author_id', $loginUser)->get();
 
-        $allBlogs = Blog::with(['category', 'author'])->where('author_id', $loginUser)->get();
-        return view('blog.index', compact('allBlogs'));
+        // Get Comment Count for every post
+        $getComment = Comment::get();
+
+        return view('blog.index', compact('allBlogs', 'getComment'));
     }
 
     // Show the form for creating a new blog.
@@ -64,6 +68,13 @@ class BlogController extends Controller
     public function show($slug)
     {
         $blog = Blog::with(['category', 'author'])->where('slug', $slug)->firstOrFail();
+
+        // Get Blog Id
+        $blog_id = Blog::where('slug', $slug)->get('id');
+        $blog_id = $blog_id[0]->id;
+        // Get Comment
+        // $comments = Comment::where('blog_id', $blog_id)->with('comments')->get();
+
         return view('blog.view', compact('blog'));
     }
 
@@ -110,7 +121,7 @@ class BlogController extends Controller
             $validated['thumbnail'] = '/public/thumbnails/' . $filename;
         }
 
-        // Create the blog post
+        // Update the blog post
         Blog::where('slug', $slug)->update($validated);
 
         // Redirect or return response

@@ -6,9 +6,18 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if (session('error'))
+            <div class="alert alert-danger mt-4">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-12 d-flex align-items-center justify-content-between mt-4">
-                <a href="{{ route('category.index') }}" class="btn btn-primary mb-4">All Categories</a>
+                @if (Auth::guard('admin')->user()->user_roll === 'admin')
+                    <a href="{{ route('category.index') }}" class="btn btn-primary mb-4">Manage Categories</a>
+                @else
+                    <a href="{{ route('home') }}" class="btn btn-primary mb-4">Back To Home</a>
+                @endif
                 <a href="{{ route('blog.create') }}" class="btn btn-primary mb-4">Create New Post</a>
             </div>
         </div>
@@ -22,7 +31,7 @@
                             <th>Category</th>
                             <th>Author</th>
                             <th>Created At</th>
-                            <th>Comment Status</th>
+                            <th>Comments</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -39,8 +48,10 @@
                                     <td>{{ $blog->author->name }}</td>
                                     <td>{{ $blog->created_at->diffForHumans() }}</td>
                                     <td>
-                                        All Comments <span class="btn btn-sm btn-success py-0 px-1" style="margin-bottom:10px; display: inline-block;">30</span><br>
-                                        Unapprove <span class="btn btn-sm btn-danger py-0 px-1">10</span>
+                                        @php
+
+                                        @endphp
+                                        <a href="{{ route('post.comment', $blog->slug) }}" class="btn btn-primary bgn-sm">View (<span>10</span>)</a>
                                     </td>
                                     <td>
                                         <a href="{{ route('blog.show', $blog->slug) }}" class="btn btn-sm btn-success">View</a>

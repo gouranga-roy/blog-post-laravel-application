@@ -22,7 +22,7 @@
                         <div class="d-flex gap-3 flex-wrap mb-3">
                             <p><strong>Author:</strong> {{ $blog->author->name }}</p>
                             <p><strong>Category:</strong> {{ $blog->category->name }}</p>
-                            <p><strong>Created At:</strong> {{ $blog->created_at->format('F j, Y, g:i a') }}</p>
+                            <p><strong>Created At:</strong> {{ $blog->created_at->format('M j, Y, g:i a') }}</p>
                         </div>
                         <hr>
                         <div>{!! nl2br(e($blog->description)) !!}</div>
@@ -45,7 +45,6 @@
                                                 <h4>Author Name</h4>
                                                 <span class="mb-3 d-block"><strong>Date:</strong> Nov 28, 2025</span>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, doloribus sed? Earum a iusto vitae deleniti pariatur qui tempore provident?</p>
-                                                <a href="#" class="btn btn-sm btn-danger">Approve</a>
                                             </div>
                                         </div>
                                     </div>
@@ -60,58 +59,14 @@
                                                         <h4>Author Name</h4>
                                                         <span class="mb-3 d-block"><strong>Date:</strong> Nov 28, 2025</span>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, doloribus sed? Earum a iusto vitae deleniti pariatur qui tempore provident?</p>
-                                                        <a href="#" class="btn btn-sm btn-danger">Aprove</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="comment mb-4">
-                                                <div class="d-flex gap-3">
-                                                    <figure>
-                                                        <img src="https://placehold.co/60x60?text=Author" alt="">
-                                                    </figure>
-                                                    <div class="comment-text">
-                                                        <h4>Author Name</h4>
-                                                        <span class="mb-3 d-block"><strong>Date:</strong> Nov 28, 2025</span>
-                                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, doloribus sed? Earum a iusto vitae deleniti pariatur qui tempore provident?</p>
-                                                        <a href="#" class="btn btn-sm btn-danger">Approve</a>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
                                     </ol>
                                 </li>
-                                <li>
-                                    <div class="comment mb-4">
-                                        <div class="d-flex gap-3">
-                                            <figure>
-                                                <img src="https://placehold.co/60x60?text=Author" alt="">
-                                            </figure>
-                                            <div class="comment-text">
-                                                <h4>Author Name</h4>
-                                                <span class="mb-3 d-block"><strong>Date:</strong> Nov 28, 2025</span>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, doloribus sed? Earum a iusto vitae deleniti pariatur qui tempore provident?</p>
-                                                <a href="#" class="btn btn-sm btn-danger">Approve</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="comment mb-4">
-                                        <div class="d-flex gap-3">
-                                            <figure>
-                                                <img src="https://placehold.co/60x60?text=Author" alt="">
-                                            </figure>
-                                            <div class="comment-text">
-                                                <h4>Author Name</h4>
-                                                <span class="mb-3 d-block"><strong>Date:</strong> Nov 28, 2025</span>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, doloribus sed? Earum a iusto vitae deleniti pariatur qui tempore provident?</p>
-                                                <a href="#" class="btn btn-sm btn-danger">Approve</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
