@@ -21,7 +21,11 @@
                                 <p class="mb-0"><strong>By:</strong> {{ $blog->author->name }},</p>
                                 <p class="mb-0"><strong>Category:</strong> {{ $blog->category->name }},</p>
                                 <p class="mb-0"><strong>Created At:</strong> {{ $blog->created_at->format('M j, Y') }}</p>
-                                <p class="mb-0"><strong>Comments:</strong> 0</p>
+                                @php
+                                    $commentCount = $blog->comments->count();
+                                    $getCount = $commentCount > 9 ? $commentCount : '0' . $commentCount;
+                                @endphp
+                                <p><strong>Comments:</strong> {{ $getCount }}</p>
                             </div>
                             <h3 class="card-title mb-4">{{ $blog->title }}</h3>
                             <p class="card-text" style="height:40px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $blog->description }}</p>
