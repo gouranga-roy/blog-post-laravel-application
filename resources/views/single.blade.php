@@ -32,42 +32,38 @@
                         {{-- Reaction --}}
                         <div class="reaction d-flex align-items-center gap-2">
                             <div class="d-flex align-items-center gap-3">
-                                <form action="#">
-                                    <button type="submit" class="btn btn-sm btn-light py-2 px-3 d-flex align-items-center gap-1">
-                                        <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
-                                                <g>
-                                                    <path fill="#2196f3" fill-rule="evenodd" d="M256 512c140.997 0 256-115.003 256-256S396.997 0 256 0 0 115.003 0 256s115.003 256 256 256z" clip-rule="evenodd" opacity="1" data-original="#2196f3" class=""></path>
-                                                    <path fill="#ffffff"
-                                                        d="M126.318 206.456h56.704v163.048c-1.604 7.982-8.984 13.959-17.324 13.959h-39.38c-9.549 0-17.318-7.775-17.318-17.324V223.774c0-9.548 7.769-17.318 17.318-17.318zm269.641 18.977c-8.856-11.353-24.777-18.976-39.617-18.976h-83.529a4.248 4.248 0 0 1-3.383-1.683 4.245 4.245 0 0 1-.711-3.718l10.557-37.862c10.162-36.434-3.25-46.603-34.089-59.723-2.885-1.227-5.692-1.245-8.589-.061-2.897 1.178-4.884 3.153-6.087 6.044l-38.985 93.594v164.045l39.283 16.37h104.03c30.767 0 42.284-32.674 45.807-46.718l21.509-85.649c2.782-11.085-1.834-20.075-6.196-25.663z"
-                                                        opacity="1" data-original="#ffffff" class=""></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                        Like
-                                    </button>
-                                </form>
+                                <button type="submit" data-id="{{ $blogSingle->id }}" data-type="like" class="likeBtn btn btn-sm btn-light py-2 px-3 d-flex align-items-center gap-1">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                                            <g>
+                                                <path fill="#2196f3" fill-rule="evenodd" d="M256 512c140.997 0 256-115.003 256-256S396.997 0 256 0 0 115.003 0 256s115.003 256 256 256z" clip-rule="evenodd" opacity="1" data-original="#2196f3" class=""></path>
+                                                <path fill="#ffffff"
+                                                    d="M126.318 206.456h56.704v163.048c-1.604 7.982-8.984 13.959-17.324 13.959h-39.38c-9.549 0-17.318-7.775-17.318-17.324V223.774c0-9.548 7.769-17.318 17.318-17.318zm269.641 18.977c-8.856-11.353-24.777-18.976-39.617-18.976h-83.529a4.248 4.248 0 0 1-3.383-1.683 4.245 4.245 0 0 1-.711-3.718l10.557-37.862c10.162-36.434-3.25-46.603-34.089-59.723-2.885-1.227-5.692-1.245-8.589-.061-2.897 1.178-4.884 3.153-6.087 6.044l-38.985 93.594v164.045l39.283 16.37h104.03c30.767 0 42.284-32.674 45.807-46.718l21.509-85.649c2.782-11.085-1.834-20.075-6.196-25.663z"
+                                                    opacity="1" data-original="#ffffff" class=""></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    Like
+                                </button>
                             </div>
                             <div class="d-flex align-items-center gap-3">
-                                <form action="#">
-                                    <button type="submit" class="btn btn-sm btn-light py-2 px-3 d-flex align-items-center gap-1">
-                                        <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0" viewBox="0 0 152 152" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
-                                                <g>
-                                                    <g data-name="Layer 2">
-                                                        <g data-name="06.Dislike">
-                                                            <circle cx="76" cy="76" r="76" fill="#eb2540" opacity="1" data-original="#eb2540" class=""></circle>
-                                                            <path fill="#ffffff"
-                                                                d="M95.43 41.26a4.88 4.88 0 0 1 4.87-4.84h13.34a4.87 4.87 0 0 1 4.86 4.84v38.05a4.88 4.88 0 0 1-4.86 4.85H100.3a4.88 4.88 0 0 1-4.87-4.85zM38.64 71.07a6.63 6.63 0 0 1 2.66-11.63 6.62 6.62 0 0 1 2.64-11.63A6.64 6.64 0 0 1 48.07 36l37.62.42a4.86 4.86 0 0 1 4.84 4.84v38.05c0 6-19.19 17.08-20.22 23-.64 3.82.21 13.64-2.43 13.64-4.48 0-10.23-1.72-10.23-11.67 0-8.78 5.75-20.17 5.75-20.17H40.13a6.63 6.63 0 0 1-1.49-13.09z"
-                                                                opacity="1" data-original="#ffffff"></path>
-                                                        </g>
+                                <button type="submit" data-id="{{ $blogSingle->id }}" data-type="dislike" class="dislikeBtn btn btn-sm btn-light py-2 px-3 d-flex align-items-center gap-1">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0" viewBox="0 0 152 152" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                                            <g>
+                                                <g data-name="Layer 2">
+                                                    <g data-name="06.Dislike">
+                                                        <circle cx="76" cy="76" r="76" fill="#eb2540" opacity="1" data-original="#eb2540" class=""></circle>
+                                                        <path fill="#ffffff"
+                                                            d="M95.43 41.26a4.88 4.88 0 0 1 4.87-4.84h13.34a4.87 4.87 0 0 1 4.86 4.84v38.05a4.88 4.88 0 0 1-4.86 4.85H100.3a4.88 4.88 0 0 1-4.87-4.85zM38.64 71.07a6.63 6.63 0 0 1 2.66-11.63 6.62 6.62 0 0 1 2.64-11.63A6.64 6.64 0 0 1 48.07 36l37.62.42a4.86 4.86 0 0 1 4.84 4.84v38.05c0 6-19.19 17.08-20.22 23-.64 3.82.21 13.64-2.43 13.64-4.48 0-10.23-1.72-10.23-11.67 0-8.78 5.75-20.17 5.75-20.17H40.13a6.63 6.63 0 0 1-1.49-13.09z"
+                                                            opacity="1" data-original="#ffffff"></path>
                                                     </g>
                                                 </g>
-                                            </svg>
-                                        </span>
-                                        DisLike
-                                    </button>
-                                </form>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    DisLike
+                                </button>
                             </div>
 
                             <div class="reaction-count ms-4 mb-2 d-flex align-items-center gap-2">
@@ -232,8 +228,26 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function() {
+        $(document).on('click', '.likeBtn, .dislikeBtn', function() {
+            let blogId = $(this).data('id');
+            let type = $(this).data('type');
 
+            $.ajax({
+                url: "{{ route('name.reaction') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    blog_id: blogId,
+                    type: type
+                },
+                success: function(res) {
+                    $('.like-' + blogId).text(res.like_count);
+                    $('.dislike-' + blogId).text(res.dislike_count);
+                },
+                error: function(xhr) {
+                    alert('Login required');
+                }
+            });
         });
     </script>
 @endpush

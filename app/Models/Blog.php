@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\BlogReaction;
+use App\Models\Category;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
@@ -26,4 +29,23 @@ class Blog extends Model
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id')->with('replies');
     }
+
+    // Relation with reactions
+    public function reactions()
+    {
+        return $this->hasMany(BlogReaction::class);
+    }
+
+    // Reaction Like
+    public function likes()
+    {
+        return $this->hasMany(BlogReaction::class)->where('type', 'like');
+    }
+
+    // Reaction Dislike
+    public function dislikes()
+    {
+        return $this->hasMany(BlogReaction::class)->where('type', 'dislike');
+    }
+
 }

@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bloglikes', function (Blueprint $table) {
+        Schema::create('blog_reactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('blog_id')->constrained('blogs')->onDelete('cascade');
-            $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
-            $table->string('like')->nullable()->default('0');
-            $table->string('dislike')->nullable()->default('0');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('blog_id')->constrained()->cascadeOnDelete();
+            $table->enum('type', ['like', 'dislike']);
             $table->timestamps();
+
+            $table->unique(['blog_id', 'user_id']);
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bloglikes');
+        Schema::dropIfExists('blog_reactions');
     }
 };

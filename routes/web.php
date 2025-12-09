@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogReactionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
@@ -57,4 +58,9 @@ Route::controller(CommentController::class)->middleware('user.logout')->group(fu
 
     Route::get('post/{slug}/comments', 'postComment')->name('post.comment');
     Route::post('commnet/{id}/status', 'commentStatus')->name('comment.status');
+});
+
+// Blog Like Reaction
+Route::controller(BlogReactionController::class)->middleware('user.logout')->group(function () {
+    Route::post('reaction', 'reaction')->name('name.reaction');
 });
