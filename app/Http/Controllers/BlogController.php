@@ -68,7 +68,6 @@ class BlogController extends Controller
     public function show($slug)
     {
         $blog = Blog::with(['category', 'author'])->where('slug', $slug)->firstOrFail();
-
         return view('blog.view', compact('blog'));
     }
 

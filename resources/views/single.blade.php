@@ -44,10 +44,16 @@
                                         </svg>
                                     </span>
                                     Like
+                                    <span class="like-count-{{ $blogSingle->id }}">
+                                        @if ($like_count > 0)
+                                            {{ $like_count }}
+                                        @endif
+                                    </span>
+
                                 </button>
                             </div>
                             <div class="d-flex align-items-center gap-3">
-                                <button type="submit" data-id="{{ $blogSingle->id }}" data-type="dislike" class="dislikeBtn btn btn-sm btn-light py-2 px-3 d-flex align-items-center gap-1">
+                                <button type="submit" data-id="{{ $blogSingle->id }}" data-type="dislike" class=" dislikeBtn btn btn-sm btn-light py-2 px-3 d-flex align-items-center gap-1" onclick="this.disabled = true;">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0" viewBox="0 0 152 152" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                             <g>
@@ -63,12 +69,12 @@
                                         </svg>
                                     </span>
                                     DisLike
+                                    <span class="dislike-count-{{ $blogSingle->id }}">
+                                        @if ($disLike_count > 0)
+                                            {{ $disLike_count }}
+                                        @endif
+                                    </span>
                                 </button>
-                            </div>
-
-                            <div class="reaction-count ms-4 mb-2 d-flex align-items-center gap-2">
-                                <span class="text-muted">Like(02)</span>
-                                <span class="text-muted">Dislike(05)</span>
                             </div>
                         </div>
                         <hr>
@@ -241,11 +247,11 @@
                     type: type
                 },
                 success: function(res) {
-                    $('.like-' + blogId).text(res.like_count);
-                    $('.dislike-' + blogId).text(res.dislike_count);
+                    $('.like-count-' + blogId).text(res.like_count);
+                    $('.dislike-count-' + blogId).text(res.dislike_count);
                 },
                 error: function(xhr) {
-                    alert('Login required');
+                    alert('Please login first!');
                 }
             });
         });

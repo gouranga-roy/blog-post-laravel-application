@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Models\Blog;
+use App\Models\BlogReaction;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Termwind\Components\Raw;
 
@@ -16,8 +18,21 @@ Route::get('/', function () {
 Route::get('single/{slug}', function ($slug) {
     // Get single blog details here
     $blogSingle = Blog::with('category', 'author', 'comments')->where('slug', $slug)->first();
-    return view('single', compact('blogSingle'));
+
+    // Get like and dislike count
+    $like_count    = BlogReaction::where('blog_id', $blogSingle->id)->where('type', 'like')->count();
+    $disLike_count = BlogReaction::where('blog_id', $blogSingle->id)->where('type', 'dislike')->count();
+
+    // Check login user login and has like
+    if (Auth::guard('admin')->check()) {
+        $userId = Auth::guard('admin')->user()->id;
+    }
+    $hasLike = BlogReaction::where('blog_id', $blogSingle->id)->where('user_id', $userId)->count();
+
+    return view('single', compact('blogSingle', 'like_count', 'disLike_count', 'hasLike'));
 })->name('blog.single');
+
+// Blog Like and Dislike count
 
 // User Controller Routes
 Route::controller(UserController::class)->group(function () {
