@@ -52,6 +52,9 @@ class BlogReactionController extends Controller
             'status'        => 'success',
             'like_count'    => BlogReaction::where('blog_id', $request->blog_id)->where('type', 'like')->count(),
             'dislike_count' => BlogReaction::where('blog_id', $request->blog_id)->where('type', 'dislike')->count(),
+
+            'has_like'      => BlogReaction::where('blog_id', $request->blog_id)->where('user_id', $userId)->where('type', 'like')->exists(),
+            'has_dislike'   => BlogReaction::where('blog_id', $request->blog_id)->where('user_id', $userId)->where('type', 'dislike')->exists(),
         ]);
     }
 

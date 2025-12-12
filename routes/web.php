@@ -27,9 +27,9 @@ Route::get('single/{slug}', function ($slug) {
     if (Auth::guard('admin')->check()) {
         $userId = Auth::guard('admin')->user()->id;
     }
-    $hasLike = BlogReaction::where('blog_id', $blogSingle->id)->where('user_id', $userId)->count();
+    $hasReaction = BlogReaction::where('blog_id', $blogSingle->id)->where('user_id', $userId)->first();
 
-    return view('single', compact('blogSingle', 'like_count', 'disLike_count', 'hasLike'));
+    return view('single', compact('blogSingle', 'like_count', 'disLike_count', 'hasReaction'));
 })->name('blog.single');
 
 // Blog Like and Dislike count
