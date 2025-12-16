@@ -297,9 +297,12 @@
                     $('.dislike-count-' + blogId).text(res.dislike_count);
                 },
                 error: function(xhr) {
-                    console.log(xhr);
-
-                    alert('Please login first!');
+                    if (xhr.status === 401) {
+                        alert('Please login first');
+                    }
+                    if (xhr.status === 422) {
+                        console.log(xhr.responseJSON.errors);
+                    }
                 }
             });
         });

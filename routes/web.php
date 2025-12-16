@@ -24,10 +24,11 @@ Route::get('single/{slug}', function ($slug) {
     $disLike_count = BlogReaction::where('blog_id', $blogSingle->id)->where('type', 'dislike')->count();
 
     // Check login user login and has like
+    $hasReaction = '';
     if (Auth::guard('admin')->check()) {
-        $userId = Auth::guard('admin')->user()->id;
+        $userId      = Auth::guard('admin')->user()->id;
+        $hasReaction = BlogReaction::where('blog_id', $blogSingle->id)->where('user_id', $userId)->first();
     }
-    $hasReaction = BlogReaction::where('blog_id', $blogSingle->id)->where('user_id', $userId)->first();
 
     return view('single', compact('blogSingle', 'like_count', 'disLike_count', 'hasReaction'));
 })->name('blog.single');
